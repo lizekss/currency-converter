@@ -1,26 +1,32 @@
 import tkinter as tk
-from converter import BasicConverter
+from converter import APIConverter
 
 
 FROM_DEFAULT = 'USD'
 TO_DEFAULT = 'EUR'
 
-converter = BasicConverter()
+converter = APIConverter()
 
 def convert_currency():
-    from_currency = from_currency_var.get()
-    to_currency = to_currency_var.get()
-    amount = float(amount_field.get())
-    converted_amount = converter.convert(from_currency, to_currency, amount)
-    converted_amount_var.set(round(converted_amount, 2))
+	from_currency = from_currency_var.get()
+	to_currency = to_currency_var.get()
+
+	amount = float(amount_field.get())
+
+	converted_amount = converter.convert(from_currency, to_currency, amount)
+	converted_amount_var.set(round(converted_amount, 2))
 
 def clear_fields():
-    from_currency_var.set(FROM_DEFAULT)
-    to_currency_var.set(TO_DEFAULT)
-    amount_field.delete(0, tk.END)
-    converted_amount_var.set('')
+	from_currency_var.set(FROM_DEFAULT)
+	to_currency_var.set(TO_DEFAULT)
+	
+	amount_field.delete(0, tk.END)
+	converted_amount_var.set('')
+
 
 root = tk.Tk()
+
+root.title("Converter App")
 
 from_currency_var = tk.StringVar(root)
 to_currency_var = tk.StringVar(root)
