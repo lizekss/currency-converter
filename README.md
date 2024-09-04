@@ -1,7 +1,7 @@
 # currency-converter
 
-Basic currency converter application using the `tkinter` library
-`BasicConverter` for hardcoded rates and `APIConverter` to demonstrate API usage
+* Basic currency converter application using the `tkinter` library
+* `BasicConverter` class for hardcoded rates and `APIConverter` class to demonstrate API usage
 
 ## Usage
 1. install `tkinter` and `requests`
