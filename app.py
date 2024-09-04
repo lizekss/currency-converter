@@ -1,11 +1,11 @@
 import tkinter as tk
-from converter import CurrencyConverter
+from converter import BasicConverter
 
 
 FROM_DEFAULT = 'USD'
 TO_DEFAULT = 'EUR'
 
-converter = CurrencyConverter()
+converter = BasicConverter()
 
 def convert_currency():
     from_currency = from_currency_var.get()

@@ -1,14 +1,23 @@
-class CurrencyConverter:
-    rates = {
-        'USD': {'EUR': 0.85, 'GBP': 0.76, 'CAD': 1.27},
-        'EUR': {'USD': 1.18, 'GBP': 0.89, 'CAD': 1.49},
-        'GBP': {'USD': 1.32, 'EUR': 1.12, 'CAD': 1.68},
-        'CAD': {'USD': 0.79, 'EUR': 0.67, 'GBP': 0.59}
-    }
+from abc import ABC, abstractmethod
+
+class CurrencyConverter(ABC):
+    @abstractmethod
+    def convert(self, from_currency, to_currency, amount):
+        pass
+
+    @abstractmethod
+    def get_currencies():
+        pass
+
+
+class BasicConverter(CurrencyConverter):
+    def __init__(self):
+        self.rates = {'USD': 1, 'EUR': 0.9, 'GBP': 0.76, 'CAD': 1.36}
+
+    def convert(self, from_currency, to_currency, amount):
+        rate = self.rates[to_currency] / self.rates[from_currency]
+        return rate * amount
 
     def get_currencies(self):
         return self.rates.keys()
 
-    def convert(self, from_currency, to_currency, amount):
-        rate = self.rates[from_currency][to_currency]
-        return rate * amount
