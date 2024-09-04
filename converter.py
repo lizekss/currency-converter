@@ -12,6 +12,9 @@ class CurrencyConverter:
         rate = self.rates[from_currency][to_currency]
         return rate * amount
 
+FROM_DEFAULT = 'USD'
+TO_DEFAULT = 'EUR'
+
 def convert_currency():
     c = CurrencyConverter()
     from_currency = from_currency_var.get()
@@ -20,6 +23,12 @@ def convert_currency():
     converted_amount = c.convert(from_currency, to_currency, amount)
     converted_amount_var.set(round(converted_amount, 2))
 
+def clear_fields():
+    from_currency_var.set(FROM_DEFAULT)
+    to_currency_var.set(TO_DEFAULT)
+    amount_field.delete(0, tk.END)
+    converted_amount_var.set('')
+
 root = tk.Tk()
 
 from_currency_var = tk.StringVar(root)
@@ -27,18 +36,20 @@ to_currency_var = tk.StringVar(root)
 amount_field = tk.Entry(root)
 converted_amount_var = tk.StringVar(root)
 
-from_currency_var.set('USD')
-to_currency_var.set('EUR')
+from_currency_var.set(FROM_DEFAULT)
+to_currency_var.set(TO_DEFAULT)
 
 from_currency_option = tk.OptionMenu(root, from_currency_var, 'USD', 'EUR', 'GBP', 'CAD')
 to_currency_option = tk.OptionMenu(root, to_currency_var, 'USD', 'EUR', 'GBP', 'CAD')
 convert_button = tk.Button(root, text="Convert", command=convert_currency)
+clear_button = tk.Button(root, text="Clear", command=clear_fields)
 converted_amount_label = tk.Label(root, textvariable=converted_amount_var)
 
 amount_field.pack()
 from_currency_option.pack()
 to_currency_option.pack()
 convert_button.pack()
+clear_button.pack()
 converted_amount_label.pack()
 
 root.mainloop()
